@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package fast_ml_linear_regression;
+
+option csharp_namespace = "Fast.ML.Linear.Classification.Grpc";
+option go_package = "fastmllinearclassificationspb";
+option java_multiple_files = true;
+option java_outer_classname = "FastMLLinearClassificationProto";
+option java_package = "com.fastmllinearclassification";
+
+service LinearClassificationService {
+    rpc Train (TrainingRequest) returns (TrainingResponse);
+    rpc Predict (PredictionRequest) returns (PredictionResponse);
+}
+
+message TrainingRequest {
+    string algorithm = 1;
+    string filepath = 2;
+    map<string, string> parameters = 3;
+}
+
+message TrainingResponse {
+    string configuration = 1;
+}
+
+message PredictionRequest {
+    string algorithm = 1;
+    string filepath = 2;
+}
+
+message PredictionResponse {
+    string message = 1;
+}
